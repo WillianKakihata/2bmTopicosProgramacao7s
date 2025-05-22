@@ -16,7 +16,7 @@ public class TarefasService {
         return novaTarefa;
     }
 
-    public Tarefas update(Tarefas novatarefa, long Id) {
+    public Tarefas update(Tarefas novatarefa, Long Id) {
         Tarefas tarefa = tarefasRepository.findById(Id).orElse(null);
         if(tarefa != null) {
             tarefa.setTitulo(novatarefa.getTitulo());
@@ -33,5 +33,11 @@ public class TarefasService {
 
     public Tarefas findById(Long id) {
         return tarefasRepository.findById(id).get();
+    }
+
+    public Tarefas delete(Long id) {
+        Tarefas tarefa = findById(id);
+        tarefasRepository.deleteById(id);
+        return tarefa;
     }
 }
