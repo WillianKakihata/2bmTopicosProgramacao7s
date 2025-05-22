@@ -4,6 +4,8 @@ import com.example._bmTopicosProgramacao7s.tarefas.repository.TarefasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TarefasService {
     @Autowired
@@ -23,5 +25,13 @@ public class TarefasService {
             return tarefasRepository.save(tarefa);
         }
         return tarefa;
+    }
+
+    public List<Tarefas> findall() {
+        return tarefasRepository.findAll();
+    }
+
+    public Tarefas findById(Long id) {
+        return tarefasRepository.findById(id).get();
     }
 }
