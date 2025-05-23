@@ -1,9 +1,11 @@
 package com.example._bmTopicosProgramacao7s.auth.controller;
 
 import com.example._bmTopicosProgramacao7s.auth.dto.AuthDTO;
+import com.example._bmTopicosProgramacao7s.auth.dto.LoginResponseDTO;
 import com.example._bmTopicosProgramacao7s.auth.dto.RegisterDTO;
 import com.example._bmTopicosProgramacao7s.auth.model.User;
 import com.example._bmTopicosProgramacao7s.auth.repository.UserRepository;
+import com.example._bmTopicosProgramacao7s.auth.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +24,17 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
