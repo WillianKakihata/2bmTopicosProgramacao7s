@@ -22,7 +22,7 @@ public class TarefasService {
     }
 
     public TarefasDTO update(TarefasDTO novatarefa, Long Id) {
-        Tarefas tarefas = tarefasRepository.findById(Id).orElse(null);
+        Tarefas tarefas = tarefasRepository.findById(Id).orElseThrow(() -> new IllegalArgumentException("Task not found for update"));
         if(tarefas != null) {
             tarefas.setTitulo(novatarefa.getTitulo());
             tarefas.setDescricao(novatarefa.getDescricao());
@@ -39,12 +39,12 @@ public class TarefasService {
     }
 
     public TarefasDTO findById(Long id) {
-        Tarefas tarefas = tarefasRepository.findById(id).get();
+        Tarefas tarefas = tarefasRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Task not found for get"));
         return modelMapper.map(tarefas, TarefasDTO.class);
     }
 
     public TarefasDTO delete(Long id) {
-        Tarefas tarefas = tarefasRepository.findById(id).get();;
+        Tarefas tarefas = tarefasRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Task not found for deletion"));
         tarefasRepository.deleteById(id);
         return modelMapper.map(tarefas, TarefasDTO.class);
     }
