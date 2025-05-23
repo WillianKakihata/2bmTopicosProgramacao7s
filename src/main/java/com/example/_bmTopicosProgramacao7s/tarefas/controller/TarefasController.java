@@ -1,5 +1,6 @@
 package com.example._bmTopicosProgramacao7s.tarefas.controller;
 
+import com.example._bmTopicosProgramacao7s.tarefas.dto.TarefasDTO;
 import com.example._bmTopicosProgramacao7s.tarefas.model.Tarefas;
 import com.example._bmTopicosProgramacao7s.tarefas.service.TarefasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +15,27 @@ public class TarefasController {
     TarefasService tarefasService;
 
     @PostMapping()
-    public Tarefas create(@RequestBody Tarefas tarefas) {
+    public TarefasDTO create(@RequestBody TarefasDTO tarefas) {
         return this.tarefasService.create(tarefas);
     }
 
     @GetMapping("/{id}")
-    public Tarefas findById(@PathVariable Long id) {
+    public TarefasDTO findById(@PathVariable Long id) {
         return this.tarefasService.findById(id);
     }
 
     @GetMapping()
-    public List<Tarefas> findAll() {
+    public List<TarefasDTO> findAll() {
         return this.tarefasService.findall();
     }
 
     @DeleteMapping("/{id}")
-    public Tarefas delete(@PathVariable Long id) {
+    public TarefasDTO delete(@PathVariable Long id) {
         return this.tarefasService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public Tarefas update(@PathVariable Long id, @RequestBody Tarefas tarefas) {
+    public TarefasDTO update(@PathVariable Long id, @RequestBody TarefasDTO tarefas) {
         return this.tarefasService.update(tarefas,id);
     }
 

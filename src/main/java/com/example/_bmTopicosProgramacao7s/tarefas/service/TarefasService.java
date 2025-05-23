@@ -1,6 +1,9 @@
 package com.example._bmTopicosProgramacao7s.tarefas.service;
+import com.example._bmTopicosProgramacao7s.tarefas.dto.TarefasDTO;
 import com.example._bmTopicosProgramacao7s.tarefas.model.Tarefas;
 import com.example._bmTopicosProgramacao7s.tarefas.repository.TarefasRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,34 +13,39 @@ import java.util.List;
 public class TarefasService {
     @Autowired
     TarefasRepository tarefasRepository;
-
-    public Tarefas create(Tarefas tarefas){
-        Tarefas novaTarefa = this.tarefasRepository.save(tarefas);
-        return novaTarefa;
+    @Autowired
+    ModelMapper modelMapper;
+    public TarefasDTO create(TarefasDTO tarefas){
+        Tarefas novaTarefa = modelMapper.map(tarefas, Tarefas.class);
+        novaTarefa = this.tarefasRepository.save(novaTarefa);
+        return modelMapper.map(novaTarefa, TarefasDTO.class);
     }
 
-    public Tarefas update(Tarefas novatarefa, Long Id) {
-        Tarefas tarefa = tarefasRepository.findById(Id).orElse(null);
-        if(tarefa != null) {
-            tarefa.setTitulo(novatarefa.getTitulo());
-            tarefa.setDescricao(novatarefa.getDescricao());
-            tarefa.setStatus(novatarefa.getStatus());
-            return tarefasRepository.save(tarefa);
+    public TarefasDTO update(TarefasDTO novatarefa, Long Id) {
+        Tarefas tarefas = tarefasRepository.findById(Id).orElse(null);
+        if(tarefas != null) {
+            tarefas.setTitulo(novatarefa.getTitulo());
+            tarefas.setDescricao(novatarefa.getDescricao());
+            tarefas.setStatus(novatarefa.getStatus());
+            tarefasRepository.save(tarefas);
+            return modelMapper.map(tarefas, TarefasDTO.class);
         }
-        return tarefa;
+        return modelMapper.map(tarefas, TarefasDTO.class);
     }
 
-    public List<Tarefas> findall() {
-        return tarefasRepository.findAll();
+    public List<TarefasDTO> findall() {
+        List<Tarefas> tarefas = tarefasRepository.findAll();
+        return modelMapper.map(tarefas, new TypeToken<List<TarefasDTO>>(){}.getType());
     }
 
-    public Tarefas findById(Long id) {
-        return tarefasRepository.findById(id).get();
+    public TarefasDTO findById(Long id) {
+        Tarefas tarefas = tarefasRepository.findById(id).get();
+        return modelMapper.map(tarefas, TarefasDTO.class);
     }
 
-    public Tarefas delete(Long id) {
-        Tarefas tarefa = findById(id);
+    public TarefasDTO delete(Long id) {
+        Tarefas tarefas = tarefasRepository.findById(id).get();;
         tarefasRepository.deleteById(id);
-        return tarefa;
+        return modelMapper.map(tarefas, TarefasDTO.class);
     }
 }
