@@ -4,6 +4,8 @@ import com.example._bmTopicosProgramacao7s.tarefas.dto.TarefasDTO;
 import com.example._bmTopicosProgramacao7s.tarefas.model.Tarefas;
 import com.example._bmTopicosProgramacao7s.tarefas.service.TarefasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +17,33 @@ public class TarefasController {
     TarefasService tarefasService;
 
     @PostMapping()
-    public TarefasDTO create(@RequestBody TarefasDTO tarefas) {
-        return this.tarefasService.create(tarefas);
+    public ResponseEntity<TarefasDTO> create(@RequestBody TarefasDTO tarefas) {
+        TarefasDTO tarefa = this.tarefasService.create(tarefas);
+        return new ResponseEntity<>(tarefa, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public TarefasDTO findById(@PathVariable Long id) {
-        return this.tarefasService.findById(id);
+    public ResponseEntity<TarefasDTO> findById(@PathVariable Long id) {
+        TarefasDTO tarefa = this.tarefasService.findById(id);
+        return new ResponseEntity<>(tarefa, HttpStatus.OK);
     }
 
     @GetMapping()
-    public List<TarefasDTO> findAll() {
-        return this.tarefasService.findall();
+    public ResponseEntity<List<TarefasDTO>> findAll() {
+        List<TarefasDTO> tarefa = this.tarefasService.findall();
+        return new ResponseEntity<>(tarefa, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public TarefasDTO delete(@PathVariable Long id) {
-        return this.tarefasService.delete(id);
+    public ResponseEntity<TarefasDTO> delete(@PathVariable Long id) {
+        TarefasDTO tarefa = this.tarefasService.delete(id);
+        return new ResponseEntity<>(tarefa, HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/{id}")
-    public TarefasDTO update(@PathVariable Long id, @RequestBody TarefasDTO tarefas) {
-        return this.tarefasService.update(tarefas,id);
+    public ResponseEntity<TarefasDTO> update(@PathVariable Long id, @RequestBody TarefasDTO tarefas) {
+        TarefasDTO tarefa = this.tarefasService.update(tarefas,id);
+        return new ResponseEntity<>(tarefa, HttpStatus.NO_CONTENT);
     }
 
 
