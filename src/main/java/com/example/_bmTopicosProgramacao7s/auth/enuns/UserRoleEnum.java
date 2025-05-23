@@ -1,4 +1,4 @@
-package com.example._bmTopicosProgramacao7s.users.enuns;
+package com.example._bmTopicosProgramacao7s.auth.enuns;
 
 public enum UserRoleEnum{
     ADMIN("Administrador"),

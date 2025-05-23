@@ -1,6 +1,6 @@
-package com.example._bmTopicosProgramacao7s.users.model;
+package com.example._bmTopicosProgramacao7s.auth.model;
 
-import com.example._bmTopicosProgramacao7s.users.enuns.UserRoleEnum;
+import com.example._bmTopicosProgramacao7s.auth.enuns.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +31,12 @@ public class User implements UserDetails {
     @Column
     private UserRoleEnum role;
 
+
+    public User(String login, String password, UserRoleEnum role){
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == UserRoleEnum.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));

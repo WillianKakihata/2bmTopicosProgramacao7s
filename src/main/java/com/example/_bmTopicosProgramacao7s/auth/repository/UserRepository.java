@@ -1,6 +1,6 @@
-package com.example._bmTopicosProgramacao7s.users.repository;
+package com.example._bmTopicosProgramacao7s.auth.repository;
 
-import com.example._bmTopicosProgramacao7s.users.model.User;
+import com.example._bmTopicosProgramacao7s.auth.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
