@@ -1,8 +1,8 @@
 package com.example._bmTopicosProgramacao7s.auth.enuns;
 
 public enum UserRoleEnum{
-    ADMIN("Administrador"),
-    USER("Usuario");
+    ADMIN("admin"),
+    USER("user");
     private String role;
 
     UserRoleEnum(String role) {
