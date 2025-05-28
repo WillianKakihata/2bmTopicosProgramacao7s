@@ -14,7 +14,7 @@ docker compose up --build
 
 ## Acessando a aplicação
 ### Jsons da aplicação:  
-1. Acessar o link, onde está localizado no OneDrive, tasks.json
+1. Acessar o link, onde está localizado no OneDrive, tasks.json  
 https://eadcesumar-my.sharepoint.com/:u:/g/personal/ra22015763-2_aluno_unicesumar_edu_br/EQzixrMnS-ZPuKuoFmVp7eMBcPBu0o8lVM6T6VJkiPPN_g?e=ien55x
 2. Baixar o tasks.json  
 3. Insira o tasks.json no Postman ou insomnia.  
