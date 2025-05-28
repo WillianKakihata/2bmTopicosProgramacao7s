@@ -10,7 +10,7 @@
 docker compose up --build
 ```
 
-3. Aguarde os containers buildarem e iniciarem.
+3. Aguarde o container buildar e iniciar.
 
 ## Acessando a aplicação
 ### Jsons da aplicação:  
