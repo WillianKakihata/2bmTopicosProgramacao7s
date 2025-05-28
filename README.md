@@ -70,10 +70,19 @@ ou criar as rotas:
 	}
 
 ```
-- **Resposta**: `201 Created` 
+
+- **Resposta**:
+```json
+{
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6IkFETUlOMSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0ODQyNTgxN30.pFzpvBViw4baPeiIPDentk8s2O-qgx1JX2u0to125Jk"
+}
+```
+---
+## Para que as rotas seguintes funcionem é necessário utilizar o Bearer Token, e inserir o Token JWT:  
+![image](https://github.com/user-attachments/assets/8588bd0f-64ba-4703-ab95-0f4631e57606)
+
 
 ---
-
 ### 📄 Listar Todos as Tarefas (APENAS USUARIOS E ADMINS)
 - **URL**: `/tarefas`
 - **Método**: `GET`
